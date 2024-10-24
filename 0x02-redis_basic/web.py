@@ -27,6 +27,7 @@ def track_get_page(fn: Callable) -> Callable:
         return response
     return wrapper
 
+
     @track_get_page
     def get_page(url: str) -> str:
         """ Makes a http request to a given endpoint
