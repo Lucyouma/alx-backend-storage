@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-""" Caching request module
-"""
+'''Caching request module
+'''
 import redis
 import requests
 from functools import wraps
@@ -13,14 +13,14 @@ redis_store = redis.Redis()
 
 
 def data_cacher(method: Callable) -> Callable:
-    """ Decorator for get_page
-    """
+    '''Decorator for get_page
+    '''
     @wraps(method)
     def invoker(url) -> str:
-        """ Wrapper that:
+        '''Wrapper that:
             - check whether a url's data is cached
             - tracks how many times get_page is called
-        """
+        '''
         redis_store.incr(f'count:{url}')
         result = redis_store.get(f'result:{url}')
         if result:
@@ -31,9 +31,9 @@ def data_cacher(method: Callable) -> Callable:
         return result
     return invoker
 
+
     @data_cacher
     def get_page(url: str) -> str:
-        """ Makes a http request to a given endpoint
-        """
-        response = requests.get(url)
-        return response.text
+        '''Makes a http request to a given endpoint
+        '''
+        return requests.get(url).text
