@@ -1,16 +1,10 @@
 #!/usr/bin/env python3
-"""
-Caching request module
+""" Caching request module
 """
 import redis
 import requests
 from functools import wraps
 from typing import Callable
-
-
-    redis_store = redis.Redis()
-    """The module-level Redis instance.
-    """
 
 
 def track_get_page(fn: Callable) -> Callable:
@@ -32,7 +26,7 @@ def track_get_page(fn: Callable) -> Callable:
         return response
     return wrapper
 
-    @track_get_page
+    @data_cacher
     def get_page(url: str) -> str:
         """ Makes a http request to a given endpoint
         """
