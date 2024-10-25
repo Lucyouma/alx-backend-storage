@@ -8,6 +8,11 @@ from functools import wraps
 from typing import Callable
 
 
+    redis_store = redis.Redis()
+    """The module-level Redis instance.
+    """
+
+
 def track_get_page(fn: Callable) -> Callable:
     """ Decorator for get_page
     """
