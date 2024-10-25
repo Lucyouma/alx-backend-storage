@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Coaching request module
+Caching request module
 """
 import redis
 import requests
